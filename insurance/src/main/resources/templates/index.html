@@ -1,0 +1,42 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+<head>
+    <title>Aplikace Pojištění</title>
+</head>
+<body>
+    <section layout:fragment="body" class="py-3 mmb-5">
+
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-8" th:if="${param.register}">
+                <span>Uživatel úspěšně registrován</span>
+            </div>
+        </div>
+
+        <div class="container text-center">
+
+            <div class="d-inline-flex justify-content-center">
+                <a sec:authorize="isAuthenticated()" th:href="@{/insuredPersons/0}" class="card text-center mx-2 my-5">
+                    <h2>Pojištěnci</h2>
+                </a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/insurances/0}" class="card text-center mx-2 my-5">
+                    <h2>Pojištění</h2>
+                </a>
+                <a sec:authorize="!isAuthenticated()" th:href="@{/aboutApp}" class="card text-center mx-2 my-5">
+                    <h2>O&nbspaplikaci</h2>
+                </a>
+                <a sec:authorize="!isAuthenticated()" th:href="@{/register}" class="card text-center mx-2 my-5">
+                    <h2>Registrace</h2>
+                </a>
+                <a th:href="@{/contact}" class="card mx-2 my-5">
+                    <h2>&nbspKontakt&nbsp</h2>
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

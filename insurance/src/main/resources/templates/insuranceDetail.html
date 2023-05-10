@@ -1,0 +1,48 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+
+<head>
+    <title>Detail Pojištění</title>
+</head>
+
+<body>
+    <section layout:fragment="body" class="container py-3 mmb-5">
+
+        <div class="alert alert-success" th:if="${param.success}">
+            <span>Akce byla provedena úspěšně</span>
+        </div>
+
+        <article class="container">
+
+            <header>
+                <h2>Pojištění</h2>
+            </header>
+
+            <section>
+                <ul>
+                    <li><strong>Název pojištění:</strong> <span th:text="${insurance.name.text}"></span></li>
+                    <li><strong>Pojistná částka:</strong> <span th:text="${insurance.amount}"></span></li>
+                    <li><strong>Předmět pojištění:</strong> <span th:text="${insurance.subject}"></span></li>
+                    <li><strong>Platnost pojištění:</strong> <span th:text="${#dates.format(insurance.validFrom, 'dd.MM.yyyy')}"></span> - <span th:text="${#dates.format(insurance.validUntil, 'dd.MM.yyyy')}"></span></li>
+                    <li>
+                        <strong>Pojistník: </strong>
+                        <a th:href="@{/insuredPersons/{ipId}/detail/0(ipId=${insuredPerson.id})}">
+                            <span th:text="${insuredPerson.firstname}"></span> <span th:text="${insuredPerson.lastname}"></span>
+                        </a>
+                    </li>
+                    <li><strong>Adresa:</strong> <span th:text="${insuredPerson.address.street}"></span>, <span th:text="${insuredPerson.address.postcode}"></span>, <span th:text="${insuredPerson.address.city}"></span></li>
+                    <li><strong>Email:</strong> <span th:text="${insuredPerson.email}"></span></li>
+                    <li><strong>Telefon:</strong> <span th:text="${insuredPerson.phone}"></span></li>
+                </ul>
+            </section>
+
+            <footer th:if="${role} == 'ADMIN'">
+                <a th:href="@{/insuredPersons/{ipId}/insurances/{insuranceId}/editInsurance(access=2, ipId=${insuredPerson.id}, insuranceId=${insurance.id})}" class="btn btn-warning text-white my-btn my-btn-insurance" type="button">Editovat</a>
+                <a th:href="@{/insuredPersons/{ipId}/insurances/{insuranceId}/delete(ipId=${insuredPerson.id}, insuranceId=${insurance.id})}" class="btn btn-danger my-btn my-btn-insurance" type="button">Odstranit</a>
+            </footer>
+        </article>
+    </section>
+</body>
+</html>

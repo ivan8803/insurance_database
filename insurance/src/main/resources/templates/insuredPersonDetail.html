@@ -1,0 +1,89 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+
+<head>
+    <title>Detail Pojištěnce</title>
+</head>
+
+<body>
+    <section layout:fragment="body" class="container py-3 mmb-5">
+
+        <div class="alert alert-success" th:if="${param.success}">
+            <span>Akce byla provedena úspěšně</span>
+        </div>
+
+        <article class="container text-center">
+            <header class="row align-items-center h5 flex-nowrap">
+                <div class="col-4 col-lg-2">
+                    <img th:src="@{/img/default_portrait.png}" class="border border-dark portret" alt="portret">
+                </div>
+                <div class="col-4 col-lg-5 text-start">
+                    <ul class="list-unstyled">
+                        <li class="h2 fw-bold" ><span th:text="${insuredPerson.firstname}"></span> <span th:text="${insuredPerson.lastname}"></span></li>
+                        <li th:text="${insuredPerson.address.street}"></li>
+                        <li th:text="${insuredPerson.address.city}"></li>
+                        <li th:text="${insuredPerson.address.postcode}"></li>
+                    </ul>
+                </div>
+                <div class="col-4 col-lg-5 text-start d-flex">
+                    <ul class="list-unstyled justify-content-center">
+                        <li th:text="${insuredPerson.email}"></li>
+                        <li th:text="${insuredPerson.phone}"></li>
+                        <li><b>Pojistitel:</b> <span th:text="${insuredPerson.createdBy.email}"></span></li>
+                    </ul>
+                </div>
+            </header>
+
+
+            <section class="row">
+                <h2>Sjednaná pojištění</h2>
+                <table class="table text-start">
+                    <thead>
+                        <th>Pojištění</th>
+                        <th>Částka</th>
+                        <th th:if="${role} == 'ADMIN'">Akce</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="insurance : ${insurances}">
+                            <td class="align-middle">
+                                <a th:href="@{/insuredPersons/{ipId}/insurances/{insuranceId}/detail(ipId=${ipId}, insuranceId=${insurance.id})}">
+                                    <span th:text="${insurance.name.text}"></span>
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <span th:text="${insurance.amount}"></span>
+                            </td>
+                            <td th:if="${role} == 'ADMIN'" class="align-middle">
+                                <a th:href="@{/insuredPersons/{ipId}/insurances/{insuranceId}/editInsurance(access=1, ipId=${ipId}, insuranceId=${insurance.id})}" class="btn btn-warning text-white my-btn my-btn-insurance" type="button">Editovat</a>
+                                <a th:href="@{/insuredPersons/{ipId}/insurances/{insuranceId}/delete(ipId=${ipId}, insuranceId=${insurance.id})}" class="btn btn-danger my-btn my-btn-insurance" type="button">Odstranit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row justify-content-center">
+                    <div class="d-flex justify-content-center py-3" th:if="${totalPages > 1}">
+                        <nav class="text-center">
+                            <ul class="pagination">
+                                <li class="page-item" th:classappend="${pageNo == 0 ? 'disabled' : ''}"><a class="page-link" th:href="@{'/insuredPersons/{ipId}/detail/' + ${pageNo - 1}(ipId=${ipId})}">Předchozí</a></li>
+
+                                <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${i == pageNo ? 'active' : ''}"><a th:text="${i+1}" class="page-link" th:href="@{/insuredPersons/{ipId}/detail/{pageNo}(ipId=${ipId}, pageNo=${i})}"></a></li>
+
+                                <li class="page-item" th:classappend="${pageNo == totalPages - 1 ? 'disabled' : ''}"><a class="page-link" th:href="@{'/insuredPersons/{ipId}/detail/' + ${pageNo + 1}(ipId=${ipId})}">Další</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3">
+                    <a class="btn btn-primary px-4 mx-2" type="button" th:href="@{/insuredPersons/{ipId}/createInsurance(success=true, ipId=${ipId})}">Přidat&nbsppojištění</a>
+                    <a class="btn btn-warning text-white mx-2" type="button" th:href="@{/insuredPersons/{ipId}/editInsuredPerson(detail=true, ipId=${ipId})}">Editovat&nbsppojištěnce</a>
+                    <a th:if="${role} == 'ADMIN'" class="btn btn-danger text-white mx-2" type="button" th:href="@{/insuredPersons/{ipId}/delete(success=true, ipId=${ipId})}">Odstranit&nbsppojištěnce</a>
+                </div>
+            </section>
+        </article>
+    </section>
+</body>
+</html>

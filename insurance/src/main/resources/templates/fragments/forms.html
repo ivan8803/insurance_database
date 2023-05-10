@@ -1,0 +1,108 @@
+<!doctype html>
+<html
+        xmlns:th="http://thymeleaf.org">
+<body>
+  <form role="form">
+    <div th:fragment="insuredPersonForm">
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-lg-4">
+          <div class="form-group pb-3">
+            <label class="form-label" for="firstname">Jméno</label>
+            <input type="text" class="form-control" id="firstname" tabindex="1" placeholder="Jan" th:field="*{firstname}">
+            <p th:if="${#fields.hasErrors('firstname')}" class="text-danger" th:errors="*{firstname}"></p>
+          </div>
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" class="form-control" id="email" tabindex="3" placeholder="jannovak88@seznam.cz" th:field="*{email}">
+            <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
+            <p th:if="${isEmail}" class="text-danger">Uživatel s touto emailovou adresou je již registrován</p>
+          </div>
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="street">Ulice a číslo popisné</label>
+            <input type="text" class="form-control" id="street" tabindex="5" placeholder="Ve Svahu 3" th:field="*{street}">
+            <p th:if="${#fields.hasErrors('street')}" class="text-danger" th:errors="*{street}"></p>
+          </div>
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="postcode">Poštovní směrovací šíslo</label>
+            <input type="text" class="form-control" id="postcode" tabindex="7" placeholder="100 00" th:field="*{postcode}">
+            <p th:if="${#fields.hasErrors('postcode')}" class="text-danger" th:errors="*{postcode}"></p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="form-group pb-3">
+            <label class="form-label" for="lastname">Příjmení</label>
+            <input type="text" class="form-control" id="lastname" tabindex="2" placeholder="Novák" th:field="*{lastname}">
+            <p th:if="${#fields.hasErrors('lastname')}" class="text-danger" th:errors="*{lastname}"></p>
+          </div>
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="phone">Telefon</label>
+            <input type="tel" class="form-control" id="phone" tabindex="4" placeholder="731 584 972" th:field="*{phone}">
+            <p th:if="${#fields.hasErrors('phone')}" class="text-danger" th:errors="*{phone}"></p>
+          </div>
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="city">Město</label>
+            <input type="text" class="form-control" id="city" tabindex="6" placeholder="Praha 1" th:field="*{city}">
+            <p th:if="${#fields.hasErrors('city')}" class="text-danger" th:errors="*{city}"></p>
+          </div>
+
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <button class="btn btn-primary col-2" type="submit">Uložit</button>
+      </div>
+    </div>
+  </form>
+
+  <form role="form">
+    <div th:fragment="insuranceForm">
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-lg-4">
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="name">Název</label>
+            <select class="form-select" id="name" th:field="*{name}">
+              <option value="">Vyberte typ pojištění</option>
+              <option th:each="type : ${insuranceTypes}" th:value="${type.name}" th:text="${type.text}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+          </div>
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="subject">Předmět</label>
+            <input type="text" class="form-control" id="subject" placeholder="Předmět pojištění" th:field="*{subject}">
+            <p th:if="${#fields.hasErrors('subject')}" class="text-danger" th:errors="*{subject}"></p>
+          </div>
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="amount">Částka</label>
+            <input type="number" class="form-control" id="amount" placeholder="Pojišťovací částka" th:field="*{amount}">
+            <p th:if="${#fields.hasErrors('amount')}" class="text-danger" th:errors="*{amount}"></p>
+          </div>
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="validFrom">Platné od</label>
+            <input type="date" class="form-control" id="validFrom" th:field="*{validFrom}">
+            <p th:if="${#fields.hasErrors('validFrom')}" class="text-danger" th:errors="*{validFrom}"></p>
+          </div>
+
+          <div class="form-group pb-3">
+            <label class="form-label" for="validUntil">Platné do</label>
+            <input type="date" class="form-control" id="validUntil" th:field="*{validUntil}">
+            <p th:if="${#fields.hasErrors('validUntil')}" class="text-danger" th:errors="*{validUntil}"></p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <button class="btn btn-primary col-2" type="submit">Uložit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
+
+</html>

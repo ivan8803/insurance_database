@@ -1,0 +1,42 @@
+.my-navbar {
+    font-size: 1.5rem;
+}
+
+.portret {
+    height: 150px;
+    width: auto;
+}
+
+#main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 120vh;
+}
+
+#web-footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: rgb(33, 37, 41);
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.card {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(33, 37, 41);
+    padding: 130px 5vw 130px 5vw;
+}
+
+.card:hover {
+    color: white;
+    background-color: rgb(59, 52, 52);
+    box-shadow: 2px 2px 15px rgb(0, 0, 0);
+}
+
+p {
+    font-size: 1.3rem;
+}

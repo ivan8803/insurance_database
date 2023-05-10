@@ -1,0 +1,17 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+
+<head>
+    <title>Nový Pojištěnec</title>
+</head>
+
+<body>
+    <section layout:fragment="body" class="container py-3 mmb-5">
+        <form role="form" method="post" th:action="@{/insuredPersons/create}" th:object="${insuredPersonForm}">
+            <div th:replace="~{fragments/forms :: insuredPersonForm}"></div>
+        </form>
+    </section>
+</body>
+</html>

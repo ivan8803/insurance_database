@@ -1,0 +1,18 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/insurance_app
+    username: postgres
+    password: f7/9gdr*
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+      database: posgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect

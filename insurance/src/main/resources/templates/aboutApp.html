@@ -1,0 +1,27 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+
+<head>
+  <title>O aplikaci</title>
+</head>
+
+<body>
+<section layout:fragment="body" class="container py-3 mmb-5">
+
+  <p class="h2">O aplikaci</p>
+  <p>
+    Aplikace vznikla jako studijní výstupní projekt v rámci rekvalifikačního kurzu „Programátor WWW aplikací v Javě“ u ITnetwork. Projekt simuluje databázový systém spravující pojištěnce a jejich pojištění. Je postaven na následujících technologiích: Spring boot, spring security, thymeleaf, JPA,  a databázi postgresql. Zabezpečení aplikace je provedeno na základě autentizace uživatelského jména a hesla.
+  </p>
+  <p class="h2">Hierarchie</p>
+  <p>
+    Neregistrovaným uživatelům jsou zpřístupněny pouze stránky s informacemi o aplikaci, kontaktem a login/registrace. Po registraci získá uživatel přístup k dalším funkcím aplikace. Pro názornost si lze během registrace vybrat roli běžného uživatele i admina. Po přihlášení může uživatel v aplikaci vytvářet nové pojištěnce a přidávat jim nová pojištění (působí v roli pojistníka). Dále může editovat pojištěnce, ale již nemá práva ani přístup k editaci již vytvořených pojištění ani jakémukoli mazání dat. Uživateli se zobrazují pouze záznamy, které sám přidal. Nebyla ošetřena možnost zobrazení si libovolného detailu skrze url. Admin má přístup k celé aplikaci i ke všem záznamům v databázi, které může libovolně mazat a editovat. Během tvorby nebo editace pojištěnce je ošetřená duplicita emailu. Není možné vytvořit více pojištěnců s totožným emailem. Během registrace uživatele je ošetřena duplicita uživatelského jména a emailu.
+  </p>
+  <p>
+    Databáze je nastavena na create-drop. Při spuštění aplikace se během inicializace repozitáře uživatelských rolí vytvoří ADMIN a USER.
+  </p>
+
+</section>
+</body>
+</html>
