@@ -3,7 +3,6 @@ package com.insuranceApp.controllers;
 import com.insuranceApp.dto.LoginDto;
 import com.insuranceApp.dto.RegistrationDto;
 import com.insuranceApp.models.UserEntity;
-import com.insuranceApp.services.UserService;
 import com.insuranceApp.services.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

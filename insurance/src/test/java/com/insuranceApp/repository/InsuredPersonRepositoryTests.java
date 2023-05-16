@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -18,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 @DataJpaTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class InsuredPersonRepositoryTests {
 
@@ -88,7 +90,7 @@ public class InsuredPersonRepositoryTests {
 
     @Test
     public void InsuredPersonRepository_FindAllByCreatedById_ReturnInsuredPersonsPage() {
-        long id = userRepository.findByUsername("Ford").getId();
+        long id = 1L;
 
         Page foundPage = insuredPersonRepository.findAllByCreatedById(id, pageable);
         UserEntity foundUser = userRepository.findById(id).get();

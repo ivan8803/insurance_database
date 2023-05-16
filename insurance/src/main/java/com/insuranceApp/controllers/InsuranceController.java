@@ -5,20 +5,16 @@ import com.insuranceApp.dto.InsuranceResponseDto;
 import com.insuranceApp.dto.InsuredPersonDto;
 import com.insuranceApp.models.InsuranceType;
 import com.insuranceApp.models.UserEntity;
-import com.insuranceApp.repository.UserRepository;
 import com.insuranceApp.security.SecurityUtil;
 import com.insuranceApp.services.UserService;
 import com.insuranceApp.services.impl.InsuranceServiceImpl;
 import com.insuranceApp.services.impl.InsuredPersonServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

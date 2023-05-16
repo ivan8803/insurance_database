@@ -1,8 +1,6 @@
 package com.insuranceApp.services;
 
 import com.insuranceApp.dto.*;
-import com.insuranceApp.models.Insurance;
-import org.springframework.data.domain.Pageable;
 
 public interface InsuranceService {
 

@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.annotation.DirtiesContext;
 
 
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ import java.util.*;
 
 
 @DataJpaTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class InsuranceRepositoryTests {
 
@@ -31,6 +33,8 @@ public class InsuranceRepositoryTests {
     private InsuredPersonRepository insuredPersonRepository;
     @Autowired
     private InsuranceRepository insuranceRepository;
+    @Autowired
+    private ApplicationContext applicationContext;
 
     private Role role_admin;
     private Role role_user;
@@ -74,16 +78,15 @@ public class InsuranceRepositoryTests {
         userRepository.save(user_2);
         insuredPersonRepository.save(insuredPerson_1);
         insuredPersonRepository.save(insuredPerson_2);
-        insuredPersonRepository.save(insuredPerson_3);
         insuranceRepository.save(insurance_1);
         insuranceRepository.save(insurance_2);
-        insuranceRepository.save(insurance_3);
     }
 
     @Test
     public void InsuranceRepository_FindAllByInsuredPersonId_ReturnInsuranceResponseDto() {
 
-        long id = insuredPersonRepository.findByEmail("nikam.se.nehnu@proc_rucnik.com").get().getId();
+        long id = 1L;
+
         Page foundPage = insuranceRepository.findAllByInsuredPersonId(id, pageable);
         InsuredPerson foundInsuredPerson = insuredPersonRepository.findById(id).get();
         List<Insurance> insuranceList = foundPage.getContent();
@@ -100,7 +103,8 @@ public class InsuranceRepositoryTests {
     @Test
     public void InsuranceRepository_FindAllByInsuredPersonCreatedById_ReturnsPageOfInsurances() {
 
-        long id = insuredPersonRepository.findByEmail("nepropadejte_panice@intergalacticSpaceAgency.isa").get().getId();
+        long id = 2L;
+
         Page foundPage = insuranceRepository.findAllByInsuredPersonCreatedById(id, pageable);
         UserEntity foundUser = userRepository.findById(id).get();
         List<Insurance> insuranceList = foundPage.getContent();

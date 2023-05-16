@@ -1,6 +1,5 @@
 package com.insuranceApp.dto;
 
-import com.insuranceApp.models.Address;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;

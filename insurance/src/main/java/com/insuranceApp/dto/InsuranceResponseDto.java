@@ -1,6 +1,5 @@
 package com.insuranceApp.dto;
 
-import com.insuranceApp.models.Insurance;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

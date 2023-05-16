@@ -2,10 +2,7 @@ package com.insuranceApp.mappers;
 
 import com.insuranceApp.dto.InsuranceDto;
 import com.insuranceApp.dto.InsuranceResponseDto;
-import com.insuranceApp.dto.InsuredPersonDto;
-import com.insuranceApp.dto.InsuredPersonResponseDto;
 import com.insuranceApp.models.Insurance;
-import com.insuranceApp.models.InsuredPerson;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
