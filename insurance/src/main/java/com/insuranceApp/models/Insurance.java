@@ -18,7 +18,9 @@ import java.util.Date;
 public class Insurance {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "insurance_sequence")
+    @SequenceGenerator(name = "insurance_sequence", sequenceName = "insurance_sequence", allocationSize = 1)
+
     private Long id;
     @Enumerated(EnumType.STRING)
     private InsuranceType name;

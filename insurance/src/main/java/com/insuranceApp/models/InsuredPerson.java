@@ -19,7 +19,8 @@ import java.util.Optional;
 public class InsuredPerson {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "insured_person_sequence")
+    @SequenceGenerator(name = "insured_person_sequence", sequenceName = "insured_person_sequence", allocationSize = 1)
     private Long id;
     private String firstname;
     private String lastname;

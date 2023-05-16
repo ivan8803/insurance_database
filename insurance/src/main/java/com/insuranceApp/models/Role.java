@@ -17,7 +17,8 @@ import java.util.List;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_sequence")
+    @SequenceGenerator(name = "role_sequence", sequenceName = "role_sequence", allocationSize = 1)
     private Integer id;
     private String name;
     @ManyToMany(mappedBy = "roles")
